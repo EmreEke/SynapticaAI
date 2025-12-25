@@ -1,0 +1,233 @@
+/* Ana Kapsayıcı */
+.page-container {
+    padding: 20px 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Responsive Padding */
+@media (max-width: 1024px) {
+    .page-container {
+        padding: 20px 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .page-container {
+        padding: 16px;
+    }
+}
+
+/* --- BAŞLIK ALANI --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.header-text h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 5px 0;
+}
+
+.header-text p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Responsive Header */
+@media (max-width: 767px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-text h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Özel Buton */
+:host ::ng-deep .custom-btn {
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+}
+
+/* Dark Mode Custom Button */
+[data-theme="dark"] :host ::ng-deep .custom-btn {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: white !important;
+    box-shadow: 0 4px 14px 0 rgba(96, 165, 250, 0.3) !important;
+}
+
+[data-theme="dark"] :host ::ng-deep .custom-btn:hover {
+    background-color: var(--color-primary-hover) !important;
+    border-color: var(--color-primary-hover) !important;
+    box-shadow: 0 6px 20px 0 rgba(96, 165, 250, 0.4) !important;
+}
+
+/* --- TABLO KARTI --- */
+.table-card {
+    background: var(--color-bg-primary);
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    border: 1px solid var(--color-border);
+}
+
+/* Responsive Table Card */
+@media (max-width: 767px) {
+    .table-card {
+        padding: 16px;
+        border-radius: 16px;
+        overflow-x: auto;
+    }
+}
+
+/* Tablo Başlıkları (Header) */
+:host ::ng-deep .modern-table .p-datatable-thead > tr > th {
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.5rem 1rem;
+}
+
+/* Tablo Satırları */
+:host ::ng-deep .modern-table .p-datatable-tbody > tr > td {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    vertical-align: middle;
+}
+
+:host ::ng-deep .modern-table .p-datatable-tbody > tr:last-child > td {
+    border-bottom: none;
+}
+
+/* Satır Hover Efekti */
+.hover-row:hover {
+    background-color: var(--color-bg-hover);
+    transition: background-color 0.2s;
+}
+
+/* Responsive Table */
+@media (max-width: 767px) {
+    :host ::ng-deep .modern-table .p-datatable-thead > tr > th,
+    :host ::ng-deep .modern-table .p-datatable-tbody > tr > td {
+        padding: 1rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    :host ::ng-deep .modern-table {
+        font-size: 0.875rem;
+    }
+}
+
+/* İçerik Stilleri */
+.job-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+}
+
+.dept-badge {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-tag {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* Aksiyon Butonu */
+.action-btn {
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-bg-tertiary) !important;
+    color: var(--color-text-secondary) !important;
+    border-color: var(--color-border) !important;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background-color: var(--color-bg-hover) !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    transform: scale(1.05);
+}
+
+/* Dark Mode Action Button Override */
+[data-theme="dark"] .action-btn {
+    background-color: var(--color-bg-tertiary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .action-btn:hover {
+    background-color: var(--color-bg-hover) !important;
+    color: var(--color-primary) !important;
+}
+
+/* Boş Durum */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px !important;
+    color: var(--color-text-secondary);
+}
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--color-text-tertiary);
+}
+.empty-state p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 5px 0;
+    color: var(--color-text-primary);
+}
+
+/* --- DIALOG & FORM --- */
+.field { margin-bottom: 1.5rem; }
+.field label { 
+    font-weight: 500; 
+    color: var(--color-text-primary); 
+    margin-bottom: 0.5rem; 
+    display: block; 
+}
+.field-checkbox { display: flex; align-items: center; margin-bottom: 1.5rem; }
+
+/* Responsive Form */
+@media (max-width: 767px) {
+    .criterion-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.criterion-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}

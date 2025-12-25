@@ -1,0 +1,49 @@
+[
+  { "label": "SKILL", "pattern": [{"LOWER": "python"}], "id": "PYTHON" },
+  { "label": "SKILL", "pattern": [{"LOWER": "pyton"}], "id": "PYTHON" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "java"}], "id": "JAVA" },
+  { "label": "SKILL", "pattern": [{"LOWER": "c++"}], "id": "C++" },
+  { "label": "SKILL", "pattern": [{"LOWER": "c#"}], "id": "C#" },
+  
+  { "label": "SKILL", "pattern": [{"LOWER": "javascript"}], "id": "JAVASCRIPT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "js"}], "id": "JAVASCRIPT" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "typescript"}], "id": "TYPESCRIPT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "angular"}], "id": "ANGULAR" },
+  { "label": "SKILL", "pattern": [{"LOWER": "react"}], "id": "REACT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "vue"}], "id": "VUE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "node.js"}], "id": "NODEJS" },
+  
+  { "label": "SKILL", "pattern": [{"LOWER": "django"}], "id": "DJANGO" },
+  { "label": "SKILL", "pattern": [{"LOWER": "flask"}], "id": "FLASK" },
+  
+  { "label": "SKILL", "pattern": [{"LOWER": "fastapi"}], "id": "FASTAPI" },
+  { "label": "SKILL", "pattern": [{"LOWER": "fast"}, {"IS_PUNCT": true, "OP": "?"}, {"LOWER": "api"}], "id": "FASTAPI" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "sql"}], "id": "SQL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "mysql"}], "id": "MYSQL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "mongodb"}], "id": "MONGODB" },
+  { "label": "SKILL", "pattern": [{"LOWER": "redis"}], "id": "REDIS" },
+  
+  { "label": "SKILL", "pattern": [{"LOWER": "postgresql"}], "id": "POSTGRESQL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "postgre"}, {"IS_PUNCT": true, "OP": "?"}, {"LOWER": "sql"}], "id": "POSTGRESQL" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "docker"}], "id": "DOCKER" },
+  { "label": "SKILL", "pattern": [{"LOWER": "dockerization"}], "id": "DOCKER" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "kubernetes"}], "id": "KUBERNETES" },
+  { "label": "SKILL", "pattern": [{"LOWER": "kubernets"}], "id": "KUBERNETES" },
+  { "label": "SKILL", "pattern": [{"LOWER": "k8s"}], "id": "KUBERNETES" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "aws"}], "id": "AWS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "amazon"}, {"LOWER": "web"}, {"LOWER": "services"}], "id": "AWS" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "azure"}], "id": "AZURE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "git"}], "id": "GIT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "linux"}], "id": "LINUX" },
+  
+  { "label": "SKILL", "pattern": [{"LOWER": "nlp"}], "id": "NLP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "scrum"}], "id": "SCRUM" },
+  { "label": "SKILL", "pattern": [{"LOWER": "agile"}], "id": "AGILE" }
+]

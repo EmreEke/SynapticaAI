@@ -1,0 +1,603 @@
+<p-toast position="bottom-right"></p-toast>
+
+<div class="page-container">
+
+    <div class="control-header">
+        <div class="header-left">
+            <h1>Aday Havuzu</h1>
+            <p>Adayları görüntülemek ve analiz etmek için bir pozisyon seçin.</p>
+        </div>
+        
+        <div class="header-right">
+            <p-dropdown 
+                [options]="jobAds" 
+                [(ngModel)]="selectedJob" 
+                optionLabel="title" 
+                (onChange)="onJobSelect()"
+                placeholder="Pozisyon Seçiniz..."
+                styleClass="modern-dropdown"
+                [showClear]="true">
+                
+                <ng-template pTemplate="selectedItem">
+                    <div class="flex align-items-center gap-2" *ngIf="selectedJob">
+                        <i class="pi pi-briefcase text-primary"></i>
+                        <span class="font-bold">{{ selectedJob.title }}</span>
+                    </div>
+                </ng-template>
+
+                <ng-template let-job pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                        <i class="pi pi-briefcase" style="color: var(--color-text-tertiary);"></i>
+                        <span>{{ job.title }}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+
+            <p-dropdown 
+                *ngIf="selectedJob"
+                [options]="sortOptions" 
+                [(ngModel)]="selectedSort" 
+                (onChange)="onSortChange()"
+                optionLabel="label" 
+                optionValue="value"
+                placeholder="Sıralama"
+                styleClass="modern-dropdown small-dropdown">
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div *ngIf="!selectedJob" class="empty-state-container fade-in">
+        <div class="empty-content flex flex-column align-items-center">
+            <div class="icon-circle mb-4 bg-primary-50">
+                <i class="pi pi-search text-primary-500 text-4xl"></i>
+            </div>
+            
+            <h2 class="text-2xl font-bold mb-2" style="color: var(--color-text-primary);">Henüz Bir İlan Seçilmedi</h2>
+            <p class="mb-4 max-w-30rem text-center line-height-3" style="color: var(--color-text-secondary);">
+                Başvuru havuzunu görüntülemek ve yapay zeka analizlerini incelemek için lütfen aşağıdan çalışmak istediğiniz pozisyonu seçin.
+            </p>
+
+            <p-dropdown 
+                [options]="jobAds" 
+                [(ngModel)]="selectedJob" 
+                optionLabel="title" 
+                (onChange)="onJobSelect()"
+                placeholder="Bir Pozisyon Seçerek Başlayın"
+                [style]="{'width':'350px', 'height':'50px'}" 
+                styleClass="text-lg shadow-2 border-round-xl"
+                [showClear]="true">
+                
+                <ng-template let-job pTemplate="item">
+                    <div class="flex align-items-center gap-3 p-2">
+                        <div class="border-circle w-2rem h-2rem flex align-items-center justify-content-center" style="background-color: var(--color-primary-light);">
+                            <i class="pi pi-briefcase" style="color: var(--color-primary);"></i>
+                        </div>
+                        <span class="font-medium">{{ job.title }}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+
+        </div>
+    </div>
+
+    <div *ngIf="selectedJob" class="content-area fade-in">
+
+        <!-- Arama ve Filtreleme Bar -->
+        <div class="search-filter-bar mb-4">
+            <div class="search-container">
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-search"></i>
+                    <input 
+                        type="text" 
+                        pInputText 
+                        [(ngModel)]="searchText" 
+                        (input)="onSearchChange()"
+                        placeholder="Aday ismine göre ara..." 
+                        class="w-full"
+                    />
+                </span>
+            </div>
+            
+            <div class="filter-actions">
+                <div class="flex align-items-center gap-2">
+                    <p-checkbox 
+                        [(ngModel)]="filterByNotes" 
+                        (onChange)="onSearchChange()"
+                        inputId="filterNotes"
+                        [binary]="true">
+                    </p-checkbox>
+                    <label for="filterNotes" class="text-sm" style="color: var(--color-text-secondary); cursor: pointer;">
+                        Sadece notlu adaylar
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sayfa Başına Kayıt ve İstatistik -->
+        <div class="pagination-controls-top mb-3">
+            <div class="flex justify-content-between align-items-center">
+                <div class="flex align-items-center gap-3">
+                    <span class="text-sm" style="color: var(--color-text-secondary);">Sayfa başına:</span>
+                    <p-dropdown 
+                        [options]="itemsPerPageOptions" 
+                        [(ngModel)]="itemsPerPage" 
+                        (onChange)="onItemsPerPageChange()"
+                        [style]="{'width': '100px', 'min-width': '100px'}">
+                    </p-dropdown>
+                    <span class="text-sm" style="color: var(--color-text-secondary);">
+                        Toplam <strong style="color: var(--color-text-primary);">{{ totalItems }}</strong> aday
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="candidate-grid">
+            
+            <div class="candidate-card upload-card flex flex-column align-items-center justify-content-center text-center cursor-pointer border-2 border-dashed border-primary-300 bg-blue-50 hover:bg-white hover:border-primary-500 hover:shadow-4 transition-all transition-duration-300 p-0"
+                 (click)="showUploadDialog()"
+                 style="min-height: 280px;"> 
+                 <div class="icon-wrapper w-5rem h-5rem border-circle shadow-2 flex align-items-center justify-content-center mb-3" style="background-color: var(--color-bg-primary);">
+                    <i class="pi pi-plus text-3xl font-bold" style="color: var(--color-primary);"></i>
+                 </div>
+                 
+                 <h3 class="text-xl font-bold m-0 mb-2" style="color: var(--color-text-primary);">Yeni Aday Ekle</h3>
+                 <p class="text-sm px-4 line-height-3 m-0" style="color: var(--color-text-secondary);">
+                     CV dosyasını yüklemek ve <br> analizi başlatmak için tıklayın.
+                 </p>
+            </div>
+
+            <div class="candidate-card" *ngFor="let candidate of candidates" (click)="viewCandidateDetails(candidate)">
+                
+                <div class="card-top">
+                    <div class="avatar-large" [ngClass]="'avatar-' + (candidate.id % 5)">
+                        {{ (candidate.filename || candidate.name || '?').charAt(0).toUpperCase() }}
+                    </div>
+                    
+                    <div class="score-badge" 
+                         [ngClass]="{
+                            'score-high': candidate.matchScore >= 70,
+                            'score-mid': candidate.matchScore >= 40 && candidate.matchScore < 70,
+                            'score-low': candidate.matchScore < 40
+                         }">
+                        <span class="score-val">%{{ candidate.matchScore | number:'1.0-0' }}</span>
+                        <span class="score-label">Uyum</span>
+                    </div>
+                </div>
+
+                <div class="card-info">
+                    <h3>{{ candidate.filename || candidate.name }}</h3>
+                    <p class="email-text">{{ candidate.email }}</p>
+                    <p class="date-text">
+                        <i class="pi pi-calendar"></i> 
+                        {{ (candidate.created_at || candidate.uploadDate) | date:'dd MMM yyyy' }}
+                    </p>
+                </div>
+
+                <div class="card-actions">
+                    <p-tag [value]="candidate.status" [severity]="getStatusSeverity(candidate.status)" styleClass="rounded-tag"></p-tag>
+                    
+                    <button class="icon-btn-danger" (click)="deleteCandidate($event, candidate)" pTooltip="Adayı Sil">
+                        <i class="pi pi-trash"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        
+        <div *ngIf="candidates.length === 0 && totalItems === 0" class="no-candidates text-center p-4">
+            <i class="pi pi-inbox text-5xl mb-3" style="color: var(--color-text-tertiary);"></i>
+            <p class="text-lg font-medium" style="color: var(--color-text-secondary);">Bu ilana ait henüz başvuru bulunmamaktadır.</p>
+        </div>
+
+        <!-- Sayfalama Kontrolleri -->
+        <div class="pagination-controls-bottom mt-4" *ngIf="totalPages > 1">
+            <div class="flex justify-content-between align-items-center flex-wrap gap-3">
+                <div class="text-sm" style="color: var(--color-text-secondary);">
+                    Sayfa <strong style="color: var(--color-text-primary);">{{ currentPage }}</strong> / <strong style="color: var(--color-text-primary);">{{ totalPages }}</strong>
+                    (Toplam {{ totalItems }} aday)
+                </div>
+                
+                <div class="flex align-items-center gap-2">
+                    <button 
+                        pButton 
+                        icon="pi pi-angle-left" 
+                        class="p-button-text p-button-rounded"
+                        [disabled]="currentPage === 1"
+                        (click)="previousPage()"
+                        pTooltip="Önceki Sayfa"
+                        [style]="{'min-width': '2.5rem', 'height': '2.5rem'}">
+                    </button>
+                    
+                    <div class="page-numbers flex gap-1">
+                        <button 
+                            *ngFor="let page of getPageNumbers()"
+                            pButton 
+                            [label]="page.toString()"
+                            [class]="page === currentPage ? 'p-button-primary' : 'p-button-text'"
+                            class="p-button-rounded"
+                            (click)="goToPage(page)"
+                            [style]="{'min-width': '2.5rem', 'height': '2.5rem'}">
+                        </button>
+                    </div>
+                    
+                    <button 
+                        pButton 
+                        icon="pi pi-angle-right" 
+                        class="p-button-text p-button-rounded"
+                        [disabled]="currentPage === totalPages"
+                        (click)="nextPage()"
+                        pTooltip="Sonraki Sayfa"
+                        [style]="{'min-width': '2.5rem', 'height': '2.5rem'}">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-sidebar [(visible)]="sidebarVisible" position="right" [style]="{width:'500px'}" styleClass="profile-sidebar surface-ground">
+    
+    <div *ngIf="!analysisResult" class="loading-state h-full flex flex-column align-items-center justify-content-center">
+        <i class="pi pi-spin pi-spinner text-blue-500 text-5xl mb-3"></i>
+        <p class="font-medium" style="color: var(--color-text-secondary);">Analiz detayları getiriliyor...</p>
+    </div>
+
+    <div *ngIf="analysisResult" class="sidebar-content p-4">
+        
+        <div class="profile-header text-center mb-4">
+            <div class="profile-avatar mx-auto mb-3 shadow-2" [ngClass]="'avatar-' + (selectedCandidate.id % 5)" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                {{ analysisResult.cv.filename.charAt(0).toUpperCase() }}
+            </div>
+            
+            <h2 class="profile-name text-2xl font-bold mb-1" style="color: var(--color-text-primary);">{{ analysisResult.cv.filename }}</h2>
+            <p class="profile-job mb-3" style="color: var(--color-text-secondary);">{{ analysisResult.job.title }}</p>
+
+            <div class="match-score-card inline-flex flex-column align-items-center p-3 border-round-xl shadow-1" [ngClass]="{
+                'bg-green-50 text-green-700': analysisResult.analysis.total_score >= 70,
+                'bg-orange-50 text-orange-700': analysisResult.analysis.total_score < 70
+            }">
+                <span class="score-label text-sm font-semibold opacity-80">YAPAY ZEKA SKORU</span>
+                <div class="score-value text-4xl font-bold mt-1">
+                    %{{ analysisResult.analysis.total_score | number:'1.0-0' }}
+                </div>
+            </div>
+        </div>
+
+        <div class="divider mb-4" style="border-color: var(--color-border);"></div>
+
+        <!-- CV Görüntüleme Butonu -->
+        <div class="cv-viewer-section mb-4">
+            <button 
+                pButton 
+                label="CV'yi Görüntüle" 
+                icon="pi pi-file-pdf" 
+                class="p-button-outlined w-full mb-3"
+                (click)="viewCV()">
+            </button>
+        </div>
+
+        <!-- Notlar Bölümü -->
+        <div class="notes-section mb-4">
+            <div class="flex justify-content-between align-items-center mb-2">
+                <h3 class="text-lg font-bold m-0" style="color: var(--color-text-primary);">Notlar</h3>
+                <button 
+                    pButton 
+                    icon="pi pi-pencil" 
+                    class="p-button-text p-button-sm"
+                    (click)="openNotesDialog()"
+                    pTooltip="Notları Düzenle">
+                </button>
+            </div>
+            <div class="notes-content p-3 border-round" style="background-color: var(--color-bg-tertiary); min-height: 60px; border: 1px solid var(--color-border);">
+                <p class="m-0 text-sm" style="color: var(--color-text-secondary);" *ngIf="!candidateNotes || candidateNotes.trim().length === 0">
+                    <i class="pi pi-info-circle mr-2"></i>Henüz not eklenmemiş. Not eklemek için düzenle butonuna tıklayın.
+                </p>
+                <p class="m-0 text-sm" style="color: var(--color-text-primary); white-space: pre-wrap; line-height: 1.6;" *ngIf="candidateNotes && candidateNotes.trim().length > 0">
+                    {{ candidateNotes }}
+                </p>
+            </div>
+        </div>
+
+        <div class="divider mb-4" style="border-color: var(--color-border);"></div>
+
+        <div class="skills-section mb-4">
+            <h3 class="text-lg font-bold mb-3" style="color: var(--color-text-primary);">Yetenek Analizi</h3>
+            
+            <div class="skill-group mb-3" *ngIf="analysisResult.analysis.matched_skills && analysisResult.analysis.matched_skills.length > 0">
+                <h5 class="group-title text-green-600 flex align-items-center gap-2 text-sm font-semibold mb-2">
+                    <i class="pi pi-check-circle"></i> Eşleşen Yetkinlikler
+                </h5>
+                <div class="skills-grid flex flex-wrap gap-2">
+                    <div class="skill-tag match bg-green-100 text-green-700 px-3 py-1 border-round-2xl text-sm font-medium" *ngFor="let skill of analysisResult.analysis.matched_skills">
+                        {{ skill }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-group" *ngIf="analysisResult.analysis.missing_skills && analysisResult.analysis.missing_skills.length > 0">
+                <h5 class="group-title text-red-500 flex align-items-center gap-2 text-sm font-semibold mb-2">
+                    <i class="pi pi-times-circle"></i> Eksik Yetkinlikler
+                </h5>
+                <div class="skills-grid flex flex-wrap gap-2">
+                    <div class="skill-tag missing bg-red-100 text-red-700 px-3 py-1 border-round-2xl text-sm font-medium" *ngFor="let skill of analysisResult.analysis.missing_skills">
+                        {{ skill }}
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="(!analysisResult.analysis.matched_skills?.length) && (!analysisResult.analysis.missing_skills?.length)" class="no-skills-msg flex align-items-center gap-2 p-3 border-round" style="color: var(--color-text-secondary); background-color: var(--color-bg-tertiary);">
+                <i class="pi pi-info-circle text-xl"></i>
+                <p class="m-0 text-sm">Bu aday için yetenek analizi verisi oluşturulamadı.</p>
+            </div>
+        </div>
+
+        <div class="ai-section my-4 p-0 border-round-xl shadow-2 overflow-hidden border-1" style="background-color: var(--color-bg-primary); border-color: var(--color-border);">
+            
+            <div class="flex justify-content-between align-items-center p-3 border-bottom-1" style="background-color: var(--color-bg-tertiary); border-bottom-color: var(--color-border);">
+                <h3 class="m-0 flex align-items-center gap-2 text-lg font-bold" style="color: var(--color-text-primary);">
+                    <i class="pi pi-sparkles text-purple-500 text-xl"></i> 
+                    AI Asistan Görüşü
+                </h3>
+                
+                <button *ngIf="!aiCommentary && !loadingAI" 
+                        pButton 
+                        label="Analiz Et" 
+                        icon="pi pi-bolt" 
+                        class="p-button-sm p-button-help shadow-1"
+                        (click)="analyzeWithAI()">
+                </button>
+            </div>
+
+            <div *ngIf="loadingAI" class="ai-loading text-center p-4">
+                <p-progressBar mode="indeterminate" [style]="{'height': '4px'}" color="#a855f7"></p-progressBar>
+                <p class="text-sm mt-3 font-medium flex align-items-center justify-content-center gap-2" style="color: var(--color-text-secondary);">
+                    <i class="pi pi-spin pi-cog"></i>Aday İnceleniyor...
+                </p>
+            </div>
+
+            <div *ngIf="aiCommentary" class="ai-card-content p-4 fadein animation-duration-300">
+                
+                <div class="ai-summary mb-4 pl-3 border-left-3 p-3 border-round-right" style="border-left-color: #c084fc; background-color: rgba(168, 85, 247, 0.15);">
+                    <i class="pi pi-quote-left text-purple-300 mb-2 block text-lg"></i>
+                    <p class="italic m-0 font-medium" style="line-height: 1.6; color: var(--color-text-primary);">
+                        {{ aiCommentary.summary }}
+                    </p>
+                </div>
+
+                <div class="grid mb-4">
+                    <div class="col-12 md:col-4">
+                        <div class="level-box text-center p-3 border-round h-full flex flex-column justify-content-center border-1" style="background-color: var(--color-bg-tertiary); border-color: var(--color-border);">
+                            <span class="block text-sm font-semibold mb-2" style="color: var(--color-text-secondary);">Tahmini Seviye  </span>
+                            <p-tag [value]="aiCommentary.level_estimation" 
+                                   [severity]="aiCommentary.level_estimation === 'Senior' ? 'success' : (aiCommentary.level_estimation === 'Mid' ? 'warning' : 'info')" 
+                                   styleClass="text-base px-3 py-2 w-full">
+                            </p-tag>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-8">
+                        <div class="recommendation-box p-3 border-round h-full border-1 flex flex-column"
+                             [ngClass]="aiCommentary.recommendation?.includes('Evet') ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'">
+                            <h5 class="m-0 mb-2 flex align-items-center gap-2 text-base font-bold"
+                                [ngClass]="aiCommentary.recommendation?.includes('Evet') ? 'text-green-700' : 'text-red-700'">
+                                <i class="pi" [ngClass]="aiCommentary.recommendation?.includes('Evet') ? 'pi-thumbs-up-fill' : 'pi-thumbs-down-fill'"></i>
+                                AI Önerisi
+                            </h5>
+                            <p class="m-0 text-sm flex-grow-1 font-medium" style="line-height: 1.5;"
+                               [ngClass]="aiCommentary.recommendation?.includes('Evet') ? 'text-green-800' : 'text-red-800'">
+                                {{ aiCommentary.recommendation }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col-12 md:col-6 mb-3 md:mb-0">
+                        <h5 class="text-sm font-bold text-green-700 mb-2 flex align-items-center gap-2">
+                            <i class="pi pi-bolt text-green-500 bg-green-100 p-1 border-circle"></i> Güçlü Yanlar
+                        </h5>
+                        <ul class="list-none p-0 m-0">
+                            <li *ngFor="let s of aiCommentary.strengths" class="mb-2 text-sm flex align-items-start gap-2" style="color: var(--color-text-primary);">
+                                <i class="pi pi-check text-green-500 mt-1"></i>
+                                <span>{{ s }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12 md:col-6">
+                        <h5 class="text-sm font-bold text-red-700 mb-2 flex align-items-center gap-2">
+                            <i class="pi pi-exclamation-triangle text-red-500 bg-red-100 p-1 border-circle"></i> Gelişim Alanları
+                        </h5>
+                        <ul class="list-none p-0 m-0">
+                            <li *ngFor="let w of aiCommentary.weaknesses" class="mb-2 text-sm flex align-items-start gap-2" style="color: var(--color-text-primary);">
+                                <i class="pi pi-times text-red-500 mt-1"></i>
+                                <span>{{ w }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="divider mt-auto" style="border-color: var(--color-border);"></div>
+
+        <div class="sidebar-footer-actions p-4 border-top-1" style="background-color: var(--color-bg-tertiary); border-top-color: var(--color-border);">
+            <button 
+                pButton 
+                label="AI Analizini PDF'e Aktar" 
+                icon="pi pi-file-pdf" 
+                class="p-button-outlined w-full mb-3"
+                (click)="exportAIToPDF()"
+                *ngIf="aiCommentary">
+            </button>
+            
+            <button class="action-btn btn-invite w-full mb-3 p-button-lg" pButton label="Mülakata Davet Et" icon="pi pi-envelope" (click)="openInviteDialog()" *ngIf="selectedCandidate?.status !== 'Interview'"></button>
+            
+            <div class="dual-actions flex gap-3">
+                <button class="action-btn btn-hire flex-1 p-button-success p-button-outlined" pButton label="İşe Al" icon="pi pi-check" (click)="updateStatus('Hired')"></button>
+                <button class="action-btn btn-reject flex-1 p-button-danger p-button-outlined" pButton label="Reddet" icon="pi pi-times" (click)="updateStatus('Rejected')"></button>
+            </div>
+        </div>
+
+    </div>
+</p-sidebar>
+
+<p-dialog header="Mülakat Daveti" [(visible)]="displayEmailDialog" [modal]="true" [style]="{width: '450px'}" styleClass="modern-dialog">
+    
+    <div class="email-form-group pt-2">
+        <label for="emailInput" class="font-medium mb-2 block" style="color: var(--color-text-primary);">Adayın Email Adresi</label>
+        <span class="p-input-icon-left w-full">
+            <i class="pi pi-envelope" style="color: var(--color-text-tertiary);"></i>
+            <input 
+                pInputText 
+                id="emailInput" 
+                [(ngModel)]="emailToSend" 
+                placeholder="ornek@email.com" 
+                class="w-full p-inputtext-lg"
+            />
+        </span>
+        <small class="mt-2 block flex align-items-center gap-1" style="color: var(--color-text-secondary);">
+            <i class="pi pi-info-circle"></i>
+            Adaya mülakat detaylarını içeren otomatik bir e-posta gönderilecektir.
+        </small>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div class="flex justify-content-end gap-2">
+            <p-button label="İptal" styleClass="p-button-text p-button-secondary font-medium" (onClick)="displayEmailDialog=false"></p-button>
+            <p-button label="Davet Gönder" styleClass="p-button-primary font-medium px-4" icon="pi pi-send" (onClick)="confirmInvite()"></p-button>
+        </div>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog header="Yeni Aday Analizi" [(visible)]="uploadDialogVisible" [modal]="true" [style]="{width: '450px'}" styleClass="modern-dialog">
+
+    <div class="flex flex-column gap-4 pt-2">
+
+        <div class="flex flex-column gap-2">
+            <label class="font-bold" style="color: var(--color-text-primary);">Aday Adı Soyadı</label>
+            <input pInputText [(ngModel)]="uploadCandidateName" placeholder="Örn: Ahmet Yılmaz" class="w-full" />
+            <small style="color: var(--color-text-secondary);">Raporda görünecek isimdir.</small>
+        </div>
+
+        <div class="flex flex-column gap-2">
+            <label class="font-bold" style="color: var(--color-text-primary);">CV Dosyası (PDF/DOCX)</label>
+            <p-fileUpload 
+                mode="basic" 
+                chooseLabel="Dosya Seç" 
+                accept=".pdf,.docx" 
+                [maxFileSize]="1000000" 
+                (onSelect)="onFileSelect($event)"
+                [auto]="false"
+                styleClass="w-full">
+            </p-fileUpload>
+            <small *ngIf="selectedFile" class="text-green-600 font-semibold">
+                <i class="pi pi-check"></i> {{ selectedFile.name }} seçildi.
+            </small>
+        </div>
+
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div class="flex justify-content-end gap-2 mt-3">
+            <p-button label="İptal" styleClass="p-button-text p-button-secondary" (onClick)="uploadDialogVisible=false"></p-button>
+            <p-button label="Analizi Başlat" 
+                      icon="pi pi-bolt" 
+                      styleClass="p-button-primary" 
+                      [loading]="isUploading"
+                      [disabled]="!selectedFile || !uploadCandidateName"
+                      (onClick)="uploadManualCV()">
+            </p-button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<!-- Notlar Dialog -->
+<p-dialog header="Aday Notları" [(visible)]="notesDialogVisible" [modal]="true" [style]="{width: '500px'}" styleClass="modern-dialog">
+    <div class="pt-2">
+        <label class="font-medium mb-2 block" style="color: var(--color-text-primary);">Notlar</label>
+        <textarea 
+            pInputTextarea 
+            [(ngModel)]="candidateNotes" 
+            rows="8" 
+            class="w-full"
+            placeholder="Aday hakkında notlarınızı buraya yazabilirsiniz..."
+            style="resize: none;">
+        </textarea>
+        <small class="text-sm mt-2 block" style="color: var(--color-text-secondary);">
+            Bu notlar sadece sizin için görünür ve aday listesinde filtreleme yaparken kullanılabilir.
+        </small>
+    </div>
+    
+    <ng-template pTemplate="footer">
+        <div class="flex justify-content-end gap-2">
+            <p-button label="İptal" styleClass="p-button-text" (onClick)="notesDialogVisible=false"></p-button>
+            <p-button label="Kaydet" styleClass="p-button-primary" icon="pi pi-check" (onClick)="saveNotes()"></p-button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<!-- CV Görüntüleyici Dialog -->
+<p-dialog 
+    header="CV Görüntüleyici" 
+    [(visible)]="cvViewerVisible" 
+    [modal]="true" 
+    [style]="{width: '90vw', height: '90vh'}" 
+    styleClass="cv-viewer-dialog"
+    [closable]="true">
+    
+    <div class="cv-viewer-toolbar mb-3 flex justify-content-between align-items-center p-3 border-round" style="background-color: var(--color-bg-tertiary);">
+        <div class="flex align-items-center gap-2">
+            <button 
+                pButton 
+                icon="pi pi-search-minus" 
+                class="p-button-text p-button-rounded"
+                (click)="zoomOut()"
+                pTooltip="Uzaklaştır">
+            </button>
+            <span class="text-sm font-medium" style="color: var(--color-text-primary); min-width: 60px; text-align: center;">
+                {{ cvZoomLevel }}%
+            </span>
+            <button 
+                pButton 
+                icon="pi pi-search-plus" 
+                class="p-button-text p-button-rounded"
+                (click)="zoomIn()"
+                pTooltip="Yakınlaştır">
+            </button>
+            <button 
+                pButton 
+                label="Sıfırla" 
+                class="p-button-text p-button-sm"
+                (click)="resetZoom()">
+            </button>
+        </div>
+        
+        <div class="flex align-items-center gap-2">
+            <button 
+                pButton 
+                label="İndir" 
+                icon="pi pi-download" 
+                class="p-button-outlined"
+                (click)="downloadCV()">
+            </button>
+            <button 
+                pButton 
+                label="Yazdır" 
+                icon="pi pi-print" 
+                class="p-button-outlined"
+                (click)="printCV()">
+            </button>
+        </div>
+    </div>
+    
+    <div class="cv-viewer-content" style="height: calc(90vh - 150px); overflow: auto; border: 1px solid var(--color-border); border-radius: 8px; background-color: var(--color-bg-primary); padding: 20px;">
+        <div *ngIf="cvViewerUrl" [style.transform]="'scale(' + (cvZoomLevel / 100) + ')'" [style.transform-origin]="'top left'" style="width: 100%;">
+            <iframe 
+                [src]="getSafeUrl()" 
+                style="width: 100%; min-height: 800px; border: none;"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</p-dialog>

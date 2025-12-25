@@ -1,0 +1,129 @@
+<p-toast position="bottom-right"></p-toast>
+<div class="page-container">
+
+    <div class="page-header">
+        <div class="header-text">
+            <h1>İş İlanları</h1>
+            <p>Aktif pozisyonları buradan yönetebilir ve takip edebilirsiniz.</p>
+        </div>
+        <p-button label="Yeni İlan Ekle" icon="pi pi-plus" (onClick)="openNew()" styleClass="p-button-primary custom-btn"></p-button>
+    </div>
+
+    <div class="table-card">
+        <p-table [value]="jobs" [tableStyle]="{'min-width': '60rem'}" styleClass="modern-table">
+            
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:25%">İlan Başlığı</th>
+                    <th style="width:35%">Açıklama</th> 
+                    <th style="width:15%">Yayın Tarihi</th>
+                    <th style="width:10%">Durum</th>
+                    <th style="width:15%; text-align: center;">İşlemler</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-job>
+                <tr class="hover-row">
+                    <td>
+                        <span class="job-title">{{ job.title }}</span>
+                    </td>
+                    <td>
+                        <span style="display: block; max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-text-secondary);">
+                            {{ job.description }}
+                        </span>
+                    </td>
+                    <td style="color: var(--color-text-secondary);">
+                        {{ job.postedDate | date:'dd MMM yyyy' }}
+                    </td>
+                    <td>
+                        <p-tag 
+                            [value]="job.isActive ? 'Yayında' : 'Pasif'" 
+                            [severity]="job.isActive ? 'success' : 'danger'"
+                            styleClass="status-tag">
+                        </p-tag>
+                    </td>
+                    <td style="text-align: center;">
+                        <button pButton pRipple icon="pi pi-pencil" 
+                                class="p-button-rounded p-button-text p-button-secondary action-btn" 
+                                (click)="editJob(job)" 
+                                pTooltip="Düzenle" tooltipPosition="top">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="5" class="empty-state">
+                        <i class="pi pi-folder-open"></i>
+                        <p>Henüz açılmış bir iş ilanı bulunmuyor.</p>
+                        <small>Yeni bir ilan ekleyerek süreci başlatabilirsiniz.</small>
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+
+</div>
+
+<p-dialog [(visible)]="jobDialog" [style]="{width: '600px'}" header="İlan Detayları" [modal]="true" styleClass="p-fluid modern-dialog">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="title" class="font-bold">İlan Başlığı</label>
+            <input type="text" pInputText id="title" [(ngModel)]="job.title" required autofocus />
+        </div>
+
+        <div class="field flex flex-column gap-2 mb-3">
+            <label for="description" class="font-bold">İlan Açıklaması</label>
+            <textarea 
+                pInputTextarea 
+                id="description" 
+                [(ngModel)]="job.description" 
+                rows="5" 
+                cols="30" 
+                placeholder="Aradığınız nitelikleri ve iş tanımını detaylıca yazın (AI analizi için önemlidir)..."
+                class="w-full"
+                style="resize: none;">
+            </textarea>
+            <small style="color: var(--color-text-secondary);">Yapay zeka, eşleştirme yaparken buradaki metni analiz edecektir.</small>
+        </div>
+        
+        <div class="field-checkbox mt-4">
+             <label for="status" class="mr-3 font-bold">İlan Durumu:</label>
+             <p-inputSwitch [(ngModel)]="job.isActive"></p-inputSwitch>
+             <span class="ml-2" [ngClass]="{'text-green-500': job.isActive, 'text-red-500': !job.isActive}">
+                 {{ job.isActive ? 'Aktif (Yayında)' : 'Pasif (Gizli)' }}
+             </span>
+        </div>
+
+        <div class="field mt-4" *ngIf="job.criteria">
+            <label class="mb-2 block font-bold" style="color: var(--color-text-primary);">Gerekli Yetenekler & Önem Derecesi (1-10)</label>
+            
+            <div *ngFor="let criterion of job.criteria; let i = index" class="criterion-row flex align-items-center gap-3 mb-3 p-3 border-round" style="background-color: var(--color-bg-tertiary);">
+                
+                <div class="flex-1">
+                    <span class="text-sm block mb-1" style="color: var(--color-text-secondary);">Yetenek</span>
+                    <input pInputText [(ngModel)]="criterion.name" placeholder="Örn: Python" class="w-full"/>
+                </div>
+
+                <div class="flex-1 px-2">
+                    <div class="flex justify-content-between mb-2">
+                        <span class="text-sm" style="color: var(--color-text-secondary);">Önem: <strong style="color: var(--color-text-primary);">{{ criterion.weight }}</strong></span>
+                    </div>
+                    <p-slider [(ngModel)]="criterion.weight" [min]="1" [max]="10" [step]="1" styleClass="w-full"></p-slider>
+                </div>
+
+                <button pButton icon="pi pi-trash" class="p-button-danger p-button-text p-button-rounded" (click)="removeCriterion(i)"></button>
+            </div>
+
+            <button pButton label="Yeni Yetenek Ekle" icon="pi pi-plus" class="p-button-outlined p-button-sm w-full" style="border-style: dashed;" (click)="addCriterion()"></button>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="İptal" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton label="Kaydet" icon="pi pi-check" class="p-button-primary" (click)="saveJob()"></button>
+    </ng-template>
+</p-dialog>

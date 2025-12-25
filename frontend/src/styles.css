@@ -1,0 +1,616 @@
+/* 1. Modern Fontu İçe Aktar */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* 2. CSS DEĞİŞKENLERİ SİSTEMİ (Light Theme - Varsayılan) */
+:root,
+[data-theme="light"] {
+    /* Renkler */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f9fafb;
+    --color-bg-tertiary: #f3f4f6;
+    --color-bg-hover: #f9fafb;
+    
+    --color-text-primary: #1f2937;
+    --color-text-secondary: #6b7280;
+    --color-text-tertiary: #9ca3af;
+    
+    --color-border: #e5e7eb;
+    --color-border-light: #f3f4f6;
+    
+    --color-primary: #3b82f6;
+    --color-primary-hover: #2563eb;
+    --color-primary-light: #dbeafe;
+    
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --color-info: #3b82f6;
+    
+    /* Sidebar */
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #ffffff;
+    --sidebar-text-muted: #94a3b8;
+    --sidebar-border: rgba(255,255,255,0.05);
+    --sidebar-hover: rgba(255,255,255,0.05);
+    --sidebar-active: rgba(59, 130, 246, 0.15);
+    
+    /* Shadow */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 3. DARK THEME */
+[data-theme="dark"] {
+    /* Renkler */
+    --color-bg-primary: #111827;
+    --color-bg-secondary: #1f2937;
+    --color-bg-tertiary: #374151;
+    --color-bg-hover: #374151;
+    
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #d1d5db;
+    --color-text-tertiary: #9ca3af;
+    
+    --color-border: #374151;
+    --color-border-light: #4b5563;
+    
+    --color-primary: #60a5fa;
+    --color-primary-hover: #3b82f6;
+    --color-primary-light: #1e3a8a;
+    
+    --color-success: #34d399;
+    --color-warning: #fbbf24;
+    --color-danger: #f87171;
+    --color-info: #60a5fa;
+    
+    /* Sidebar */
+    --sidebar-bg: #0f172a;
+    --sidebar-text: #f1f5f9;
+    --sidebar-text-muted: #94a3b8;
+    --sidebar-border: rgba(255,255,255,0.1);
+    --sidebar-hover: rgba(255,255,255,0.1);
+    --sidebar-active: rgba(96, 165, 250, 0.2);
+    
+    /* Shadow */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* 4. Temel Ayarlar */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 5. RESPONSIVE BREAKPOINTS */
+/* Mobile First Approach */
+/* CSS Variables for breakpoints */
+:root {
+    --mobile: 640px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large-desktop: 1280px;
+}
+
+/* 6. Global PrimeNG Override */
+.p-inputtext, .p-dropdown, .p-button, .p-component, .p-inputnumber-input {
+    border-radius: 12px !important; 
+    font-family: 'Poppins', sans-serif !important;
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+    border-color: var(--color-border) !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Input Focus Efektleri */
+.p-inputtext:enabled:focus, 
+.p-dropdown:not(.p-disabled).p-focus,
+.p-inputnumber-input:enabled:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+    border-color: var(--color-primary) !important;
+}
+
+/* PrimeNG Dark Mode Overrides */
+[data-theme="dark"] .p-component {
+    background-color: var(--color-bg-secondary) !important;
+    color: var(--color-text-primary) !important;
+    border-color: var(--color-border) !important;
+}
+
+/* PrimeNG Table Dark Mode */
+[data-theme="dark"] .p-datatable {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--color-bg-tertiary) !important;
+    color: var(--color-text-secondary) !important;
+    border-color: var(--color-border) !important;
+}
+
+[data-theme="dark"] .p-datatable .p-datatable-tbody > tr {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-datatable .p-datatable-tbody > tr:hover {
+    background-color: var(--color-bg-hover) !important;
+}
+
+[data-theme="dark"] .p-datatable .p-datatable-tbody > tr > td {
+    border-color: var(--color-border) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* PrimeNG Button Dark Mode */
+[data-theme="dark"] .p-button {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .p-button:hover {
+    background-color: var(--color-primary-hover) !important;
+    border-color: var(--color-primary-hover) !important;
+}
+
+[data-theme="dark"] .p-button:enabled:active {
+    background-color: var(--color-primary-hover) !important;
+    border-color: var(--color-primary-hover) !important;
+}
+
+/* Button Text Variant */
+[data-theme="dark"] .p-button-text {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: var(--color-primary) !important;
+}
+
+[data-theme="dark"] .p-button-text:hover {
+    background-color: var(--color-bg-hover) !important;
+    border-color: transparent !important;
+    color: var(--color-primary) !important;
+}
+
+[data-theme="dark"] .p-button-text:enabled:active {
+    background-color: var(--color-bg-tertiary) !important;
+}
+
+/* Button Outlined Variant */
+[data-theme="dark"] .p-button-outlined {
+    background-color: transparent !important;
+    border-color: var(--color-primary) !important;
+    color: var(--color-primary) !important;
+}
+
+[data-theme="dark"] .p-button-outlined:hover {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .p-button-outlined:enabled:active {
+    background-color: var(--color-primary-hover) !important;
+    border-color: var(--color-primary-hover) !important;
+    color: white !important;
+}
+
+/* Button Secondary Variant */
+[data-theme="dark"] .p-button-secondary {
+    background-color: var(--color-bg-tertiary) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-button-secondary:hover {
+    background-color: var(--color-bg-hover) !important;
+    border-color: var(--color-border-light) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Button Success Variant */
+[data-theme="dark"] .p-button-success {
+    background-color: var(--color-success) !important;
+    border-color: var(--color-success) !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .p-button-success:hover {
+    background-color: #22c55e !important;
+    border-color: #22c55e !important;
+}
+
+[data-theme="dark"] .p-button-success.p-button-outlined {
+    background-color: transparent !important;
+    border-color: var(--color-success) !important;
+    color: var(--color-success) !important;
+}
+
+[data-theme="dark"] .p-button-success.p-button-outlined:hover {
+    background-color: var(--color-success) !important;
+    color: white !important;
+}
+
+/* Button Danger Variant */
+[data-theme="dark"] .p-button-danger {
+    background-color: var(--color-danger) !important;
+    border-color: var(--color-danger) !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .p-button-danger:hover {
+    background-color: #ef4444 !important;
+    border-color: #ef4444 !important;
+}
+
+[data-theme="dark"] .p-button-danger.p-button-outlined {
+    background-color: transparent !important;
+    border-color: var(--color-danger) !important;
+    color: var(--color-danger) !important;
+}
+
+[data-theme="dark"] .p-button-danger.p-button-outlined:hover {
+    background-color: var(--color-danger) !important;
+    color: white !important;
+}
+
+/* Button Help/Info Variant */
+[data-theme="dark"] .p-button-help {
+    background-color: var(--color-info) !important;
+    border-color: var(--color-info) !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .p-button-help:hover {
+    background-color: var(--color-primary-hover) !important;
+    border-color: var(--color-primary-hover) !important;
+}
+
+/* Button Rounded */
+[data-theme="dark"] .p-button-rounded {
+    border-radius: 50% !important;
+}
+
+/* Button Sizes */
+[data-theme="dark"] .p-button-sm {
+    padding: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+[data-theme="dark"] .p-button-lg {
+    padding: 1rem 1.5rem !important;
+    font-size: 1.125rem !important;
+}
+
+/* Disabled Buttons */
+[data-theme="dark"] .p-button:disabled {
+    background-color: var(--color-bg-tertiary) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-tertiary) !important;
+    opacity: 0.6 !important;
+}
+
+/* PrimeNG Dropdown Dark Mode */
+[data-theme="dark"] .p-dropdown {
+    background-color: var(--color-bg-primary) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-dropdown:not(.p-disabled):hover {
+    border-color: var(--color-border-light) !important;
+}
+
+[data-theme="dark"] .p-dropdown:not(.p-disabled).p-focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+[data-theme="dark"] .p-dropdown-panel {
+    background-color: var(--color-bg-primary) !important;
+    border-color: var(--color-border) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+[data-theme="dark"] .p-dropdown-item {
+    color: var(--color-text-primary) !important;
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .p-dropdown-item:hover {
+    background-color: var(--color-bg-hover) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-dropdown-item.p-highlight {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .p-dropdown-item.p-highlight:hover {
+    background-color: var(--color-primary-hover) !important;
+}
+
+[data-theme="dark"] .p-dropdown-label {
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-dropdown-trigger {
+    color: var(--color-text-secondary) !important;
+}
+
+[data-theme="dark"] .p-dropdown-empty-message {
+    color: var(--color-text-secondary) !important;
+}
+
+/* PrimeNG Input Dark Mode */
+[data-theme="dark"] .p-inputtext {
+    background-color: var(--color-bg-primary) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-inputtext:enabled:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+/* PrimeNG Card Dark Mode */
+[data-theme="dark"] .p-card {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+    border-color: var(--color-border) !important;
+}
+
+/* PrimeNG Sidebar Dark Mode */
+[data-theme="dark"] .p-sidebar {
+    background-color: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
+}
+
+/* PrimeNG Sidebar Light Mode */
+.p-sidebar:not([data-theme="dark"]) {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* PrimeNG Tag Dark Mode */
+[data-theme="dark"] .p-tag {
+    background-color: var(--color-bg-tertiary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-tag.p-tag-success {
+    background-color: rgba(34, 197, 94, 0.2) !important;
+    color: var(--color-success) !important;
+}
+
+[data-theme="dark"] .p-tag.p-tag-danger {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+    color: var(--color-danger) !important;
+}
+
+/* PrimeNG Slider Dark Mode */
+[data-theme="dark"] .p-slider {
+    background-color: var(--color-bg-tertiary) !important;
+}
+
+[data-theme="dark"] .p-slider .p-slider-handle {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+[data-theme="dark"] .p-slider .p-slider-range {
+    background-color: var(--color-primary) !important;
+}
+
+/* PrimeNG InputSwitch Dark Mode */
+[data-theme="dark"] .p-inputswitch .p-inputswitch-slider {
+    background-color: var(--color-bg-tertiary) !important;
+}
+
+[data-theme="dark"] .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background-color: var(--color-primary) !important;
+}
+
+/* PrimeNG Textarea Dark Mode */
+[data-theme="dark"] .p-inputtextarea {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+    border-color: var(--color-border) !important;
+}
+
+[data-theme="dark"] .p-inputtextarea:enabled:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+[data-theme="dark"] .p-dialog {
+    background-color: var(--color-bg-secondary) !important;
+}
+
+[data-theme="dark"] .p-dialog .p-dialog-header {
+    background-color: var(--color-bg-secondary) !important;
+    color: var(--color-text-primary) !important;
+    border-bottom-color: var(--color-border) !important;
+}
+
+[data-theme="dark"] .p-dialog .p-dialog-content {
+    background-color: var(--color-bg-secondary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+[data-theme="dark"] .p-dialog .p-dialog-footer {
+    background-color: var(--color-bg-tertiary) !important;
+    border-top-color: var(--color-border) !important;
+}
+
+/* 7. SIDEBAR ÖZEL TASARIMI */
+.p-sidebar {
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border: none !important;
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Sidebar Dark Mode Override */
+[data-theme="dark"] .p-sidebar {
+    background-color: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
+}
+
+/* 8. DIALOG (MODAL) ÖZEL TASARIMI */
+.p-dialog {
+    border-radius: 24px !important;
+    box-shadow: var(--shadow-xl) !important;
+    border: none !important;
+    overflow: hidden;
+    background-color: var(--color-bg-primary) !important;
+}
+
+.p-dialog .p-dialog-header {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+    padding: 1.5rem 2rem !important;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.p-dialog .p-dialog-title {
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    color: var(--color-text-primary) !important;
+}
+
+.p-dialog .p-dialog-content {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+    padding: 2rem !important;
+}
+
+.p-dialog .p-dialog-footer {
+    background-color: var(--color-bg-tertiary) !important;
+    padding: 1.5rem 2rem !important;
+    border-top: 1px solid var(--color-border);
+}
+
+/* Responsive Dialog */
+@media (max-width: 640px) {
+    .p-dialog {
+        width: 95% !important;
+        margin: 1rem !important;
+    }
+    
+    .p-dialog .p-dialog-header,
+    .p-dialog .p-dialog-content,
+    .p-dialog .p-dialog-footer {
+        padding: 1rem 1.5rem !important;
+    }
+}
+
+/* 9. SCROLLBAR TASARIMI */
+::-webkit-scrollbar { 
+    width: 8px; 
+    height: 8px; 
+}
+
+::-webkit-scrollbar-track { 
+    background: var(--color-bg-tertiary); 
+}
+
+::-webkit-scrollbar-thumb { 
+    background: var(--color-text-tertiary); 
+    border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb:hover { 
+    background: var(--color-text-secondary); 
+}
+
+/* 10. BİLDİRİM KUTUSU (TOAST) */
+.p-toast .p-toast-message {
+    border-radius: 16px !important;
+    border: none !important;
+    box-shadow: var(--shadow-lg) !important;
+    background-color: var(--color-bg-primary) !important;
+    backdrop-filter: blur(10px);
+    margin-bottom: 1rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    overflow: hidden;
+    color: var(--color-text-primary) !important;
+}
+
+/* İkon Tasarımı */
+.p-toast-message .p-toast-message-icon {
+    font-size: 1.5rem !important;
+    padding-right: 10px;
+}
+
+/* --- TİPLERE GÖRE RENKLENDİRME --- */
+
+/* Toast Mesaj Tipleri */
+.p-toast-message-success {
+    border-left: 6px solid var(--color-success) !important;
+}
+.p-toast-message-success .p-toast-message-icon {
+    color: var(--color-success) !important;
+}
+.p-toast-message-success .p-toast-summary {
+    color: var(--color-text-primary) !important;
+    font-weight: 700;
+}
+
+.p-toast-message-info {
+    border-left: 6px solid var(--color-info) !important;
+}
+.p-toast-message-info .p-toast-message-icon {
+    color: var(--color-info) !important;
+}
+.p-toast-message-info .p-toast-summary {
+    color: var(--color-text-primary) !important;
+    font-weight: 700;
+}
+
+.p-toast-message-error {
+    border-left: 6px solid var(--color-danger) !important;
+}
+.p-toast-message-error .p-toast-message-icon {
+    color: var(--color-danger) !important;
+}
+.p-toast-message-error .p-toast-summary {
+    color: var(--color-text-primary) !important;
+    font-weight: 700;
+}
+
+.p-toast-message-warn {
+    border-left: 6px solid var(--color-warning) !important;
+}
+.p-toast-message-warn .p-toast-message-icon {
+    color: var(--color-warning) !important;
+}
+.p-toast-message-warn .p-toast-summary {
+    color: var(--color-text-primary) !important;
+    font-weight: 700;
+}
+
+/* Toast Kapatma Butonu */
+.p-toast-icon-close {
+    color: var(--color-text-tertiary) !important;
+    background: transparent !important;
+    transition: transform 0.2s;
+}
+.p-toast-icon-close:hover {
+    color: var(--color-text-primary) !important;
+    transform: rotate(90deg);
+}

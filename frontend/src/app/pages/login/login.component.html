@@ -1,0 +1,78 @@
+<div class="login-container">
+  
+  <div class="brand-section">
+    <div class="brand-content">
+      <div class="logo-circle">S</div>
+      <h1>Synaptica<span class="highlight">AI</span></h1>
+      <p>Yapay Zeka Destekli İşe Alım Asistanınız</p>
+    </div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-wrapper">
+      
+      <div class="form-header">
+        <h2>Tekrar Hoşgeldiniz 👋</h2>
+        <p>Hesabınıza erişmek için bilgilerinizi girin.</p>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-alert">
+        <i class="pi pi-exclamation-circle"></i> {{ errorMessage }}
+      </div>
+
+      <form (ngSubmit)="onLogin()">
+        
+        <div class="input-group">
+          <label for="username">Kullanıcı Adı</label>
+          <div class="input-field">
+            <i class="pi pi-user icon"></i>
+            <input 
+              type="text" 
+              id="username" 
+              placeholder="Örn: admin" 
+              [(ngModel)]="username" 
+              name="username" 
+              required
+              autocomplete="off">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Şifre</label>
+          <div class="input-field">
+            <i class="pi pi-lock icon"></i>
+            <input 
+              type="password" 
+              id="password" 
+              placeholder="••••••••" 
+              [(ngModel)]="password" 
+              name="password" 
+              required>
+          </div>
+        </div>
+
+        <div class="actions">
+          <div class="remember-me">
+            <input type="checkbox" id="remember">
+            <label for="remember">Beni Hatırla</label>
+          </div>
+          <a href="#" class="forgot-pass">Şifremi Unuttum</a>
+        </div>
+
+        <button type="submit" class="btn-login" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Giriş Yap</span>
+          <span *ngIf="isLoading"><i class="pi pi-spin pi-spinner"></i> Kontrol Ediliyor...</span>
+        </button>
+
+      </form>
+
+      <div class="form-footer">
+        <p>Hesabınız yok mu? <a href="#">Yönetici ile iletişime geçin</a></p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

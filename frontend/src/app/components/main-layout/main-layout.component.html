@@ -1,0 +1,135 @@
+<div class="layout-wrapper">
+    
+    <!-- Mobile Overlay (Sidebar açıkken arka plan) -->
+    <div class="mobile-overlay" 
+         *ngIf="isMobile && isSidebarOpen" 
+         (click)="closeSidebar()">
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" 
+           [class.sidebar-open]="isSidebarOpen"
+           [class.sidebar-mobile]="isMobile">
+        <div class="logo-area">
+            <div class="logo-icon">S</div>
+            <span class="logo-text">Synaptica<span class="text-blue">AI</span></span>
+            <!-- Mobile Close Button -->
+            <button class="sidebar-close-btn" 
+                    *ngIf="isMobile" 
+                    (click)="closeSidebar()"
+                    aria-label="Menüyü Kapat">
+                <i class="pi pi-times"></i>
+            </button>
+        </div>
+
+        <nav class="nav-links">
+            <a routerLink="/" 
+               routerLinkActive="active" 
+               [routerLinkActiveOptions]="{exact: true}" 
+               class="nav-item"
+               (click)="closeSidebar()">
+                <i class="pi pi-th-large"></i>
+                <span>Özet Paneli</span>
+            </a>
+            
+            <a routerLink="/jobs" 
+               routerLinkActive="active" 
+               class="nav-item"
+               (click)="closeSidebar()">
+                <i class="pi pi-briefcase"></i>
+                <span>İlanlar</span>
+            </a>
+            
+            <a routerLink="/candidates" 
+               routerLinkActive="active" 
+               class="nav-item"
+               (click)="closeSidebar()">
+                <i class="pi pi-users"></i>
+                <span>Adaylar</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info-card flex align-items-center gap-3 p-2 border-round hover:surface-100 cursor-pointer transition-colors">
+                <div class="w-3rem h-3rem border-circle bg-gray-200 flex align-items-center justify-content-center text-gray-700 font-bold text-lg">
+                    {{ username ? username.charAt(0).toUpperCase() : 'U' }}
+                </div>
+                <div class="flex flex-column">
+                    <p class="m-0 font-bold text-gray-800 text-sm">{{ username || 'Kullanıcı' }}</p> 
+                    <p class="m-0 text-xs text-gray-500">
+                        {{ role === 'Admin' ? 'Yönetici' : 'İK Uzmanı' }}
+                    </p>
+                </div>
+                <i class="pi pi-sign-out text-gray-400 hover:text-red-500 ml-auto" 
+                   (click)="onLogout()" 
+                   title="Çıkış Yap"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <header class="top-header">
+            
+            <div class="header-left">
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" 
+                        *ngIf="isMobile" 
+                        (click)="toggleSidebar()"
+                        aria-label="Menüyü Aç">
+                    <i class="pi pi-bars"></i>
+                </button>
+                
+                <div class="header-text">
+                    <h2 class="welcome-title text-xl font-bold text-gray-800 m-0">
+                        <span *ngIf="!isMobile">Hoşgeldiniz, </span>
+                        <span class="text-primary">{{ username }}</span> 
+                        <span *ngIf="!isMobile">👋</span>
+                    </h2>
+                    <p class="current-date text-sm text-gray-500 m-0 mt-1 flex align-items-center gap-2" *ngIf="!isMobile">
+                        <i class="pi pi-calendar"></i> 
+                        {{ today | date:'d MMMM yyyy, EEEE' }}
+                    </p>
+                </div>
+            </div>
+        
+            <div class="header-right">
+                
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-btn" 
+                        (click)="toggleTheme()"
+                        [attr.aria-label]="currentTheme === 'light' ? 'Karanlık moda geç' : 'Aydınlık moda geç'"
+                        title="{{ currentTheme === 'light' ? 'Karanlık Mod' : 'Aydınlık Mod' }}">
+                    <i class="pi" [ngClass]="currentTheme === 'light' ? 'pi-moon' : 'pi-sun'"></i>
+                </button>
+                
+                <div class="user-profile-pill" (click)="toggleDropdown()" style="margin-left: 12px;">
+                    <div class="user-avatar">
+                        {{ username ? username.slice(0, 2).toUpperCase() : 'TR' }}
+                    </div>
+                    
+                    <div class="user-details" *ngIf="!isMobile">
+                        <span class="user-name">{{ username }}</span> 
+                        <span class="user-role">{{ role }}</span>
+                    </div>
+                    
+                    <i class="pi" [ngClass]="isDropdownOpen ? 'pi-angle-up' : 'pi-angle-down'"></i>
+
+                    <div class="dropdown-menu shadow-2 border-round" *ngIf="isDropdownOpen">
+                        <button (click)="onLogout()" 
+                                class="dropdown-item danger w-full text-left p-2 hover:surface-100 border-none bg-transparent cursor-pointer flex align-items-center gap-2 text-red-500 font-medium">
+                            <i class="pi pi-sign-out"></i> Çıkış Yap
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <div class="content-body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

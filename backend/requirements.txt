@@ -1,0 +1,70 @@
+# SynapticaAI Backend Requirements
+# Python 3.10+ gereklidir
+
+# Web Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+
+# Database
+sqlalchemy==2.0.25
+psycopg2-binary==2.9.9
+
+# Data Validation
+pydantic==2.5.3
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Environment Variables
+python-dotenv==1.0.0
+
+# PDF Processing
+pdfplumber==0.10.3
+pdfminer.six==20231228
+
+# Document Processing
+python-docx==1.1.0
+
+# Natural Language Processing
+spacy==3.7.2
+
+# Machine Learning & Text Analysis
+scikit-learn==1.4.0
+
+# Fuzzy String Matching
+thefuzz==0.20.0
+python-Levenshtein==0.23.0
+
+# AI Integration (Google Gemini)
+google-generativeai==0.3.2
+
+# HTTP Client (FastAPI dependencies)
+httpx==0.26.0
+
+# Additional utilities
+email-validator==2.1.0
+
+# ============================================
+# KURULUM TALİMATLARI
+# ============================================
+# 
+# 1. Python 3.10+ yüklü olduğundan emin olun
+# 2. Virtual environment oluşturun: python -m venv venv
+# 3. Virtual environment'ı aktifleştirin:
+#    - Windows: venv\Scripts\activate
+#    - Linux/Mac: source venv/bin/activate
+# 4. Bağımlılıkları yükleyin: pip install -r requirements.txt
+# 
+# 5. SpaCy Modeli İndirin (Türkçe veya İngilizce):
+#    - Türkçe: python -m spacy download tr_core_news_tr
+#    - İngilizce: python -m spacy download en_core_web_sm
+# 
+# 6. .env dosyası oluşturun ve gerekli değişkenleri ekleyin:
+#    - SECRET_KEY=your_secret_key_here
+#    - GEMINI_API_KEY=your_gemini_api_key_here
+#    - DATABASE_URL=postgresql://user:password@localhost/dbname
+# 
+# 7. Veritabanını oluşturun ve migrate edin
+# 8. Sunucuyu başlatın: uvicorn main:app --reload
+

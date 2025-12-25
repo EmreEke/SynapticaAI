@@ -1,0 +1,70 @@
+# SynapticaAI Frontend Requirements
+# NOT: Frontend için npm paketleri kullanılmaktadır.
+# Bu dosya sadece referans amaçlıdır.
+# Gerçek bağımlılıklar package.json dosyasında bulunmaktadır.
+# 
+# Kurulum için: npm install
+
+# ============================================
+# PRODUCTION DEPENDENCIES (package.json)
+# ============================================
+
+# Angular Core Framework
+@angular/animations@^17.3.0
+@angular/common@^17.3.0
+@angular/compiler@^17.3.0
+@angular/core@^17.3.0
+@angular/forms@^17.3.0
+@angular/platform-browser@^17.3.0
+@angular/platform-browser-dynamic@^17.3.0
+@angular/router@^17.3.0
+
+# UI Component Library
+primeng@^17.18.15
+primeicons@^7.0.0
+
+# Charts & Visualization
+chart.js@^4.5.1
+
+# Reactive Programming
+rxjs@~7.8.0
+
+# Utilities
+tslib@^2.3.0
+zone.js@~0.14.3
+
+# ============================================
+# DEVELOPMENT DEPENDENCIES (package.json)
+# ============================================
+
+# Angular CLI & Build Tools
+@angular-devkit/build-angular@^17.3.17
+@angular/cli@^17.3.17
+@angular/compiler-cli@^17.3.0
+
+# Testing
+@types/jasmine@~5.1.0
+jasmine-core@~5.1.0
+karma@~6.4.0
+karma-chrome-launcher@~3.2.0
+karma-coverage@~2.2.0
+karma-jasmine@~5.1.0
+karma-jasmine-html-reporter@~2.1.0
+
+# TypeScript
+typescript@^5.4.2
+
+# ============================================
+# KURULUM TALİMATLARI
+# ============================================
+# 
+# 1. Node.js (v18+ önerilir) ve npm'in yüklü olduğundan emin olun
+# 2. Frontend dizinine gidin: cd frontend
+# 3. Bağımlılıkları yükleyin: npm install
+# 4. Geliştirme sunucusunu başlatın: npm start
+# 5. Tarayıcıda açın: http://localhost:4200
+# 
+# NOT: Bu dosya sadece referans amaçlıdır.
+# Gerçek kurulum package.json üzerinden yapılır.
+# Tüm bağımlılıklar package.json dosyasında tanımlıdır.
+
