@@ -49,5 +49,97 @@
   
   { "label": "SKILL", "pattern": [{"LOWER": "nlp"}], "id": "NLP" },
   { "label": "SKILL", "pattern": [{"LOWER": "scrum"}], "id": "SCRUM" },
-  { "label": "SKILL", "pattern": [{"LOWER": "agile"}], "id": "AGILE" }
+  { "label": "SKILL", "pattern": [{"LOWER": "agile"}], "id": "AGILE" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "html"}], "id": "HTML" },
+  { "label": "SKILL", "pattern": [{"LOWER": "css"}], "id": "CSS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "sass"}], "id": "SASS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "bootstrap"}], "id": "BOOTSTRAP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "tailwind"}], "id": "TAILWIND" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "php"}], "id": "PHP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "laravel"}], "id": "LARAVEL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "symfony"}], "id": "SYMFONY" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "go"}], "id": "GOLANG" },
+  { "label": "SKILL", "pattern": [{"LOWER": "golang"}], "id": "GOLANG" },
+  { "label": "SKILL", "pattern": [{"LOWER": "ruby"}], "id": "RUBY" },
+  { "label": "SKILL", "pattern": [{"LOWER": "rails"}], "id": "RAILS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "swift"}], "id": "SWIFT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "scala"}], "id": "SCALA" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "spring"}], "id": "SPRING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "spring"}, {"LOWER": "boot"}], "id": "SPRINGBOOT" },
+  { "label": "SKILL", "pattern": [{"LOWER": ".net"}], "id": "DOTNET" },
+  { "label": "SKILL", "pattern": [{"LOWER": "entity"}, {"LOWER": "framework"}], "id": "ENTITY_FRAMEWORK" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "tensorflow"}], "id": "TENSORFLOW" },
+  { "label": "SKILL", "pattern": [{"LOWER": "pytorch"}], "id": "PYTORCH" },
+  { "label": "SKILL", "pattern": [{"LOWER": "keras"}], "id": "KERAS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "pandas"}], "id": "PANDAS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "numpy"}], "id": "NUMPY" },
+  { "label": "SKILL", "pattern": [{"LOWER": "scikit-learn"}], "id": "SCIKIT_LEARN" },
+  { "label": "SKILL", "pattern": [{"LOWER": "opencv"}], "id": "OPENCV" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "hadoop"}], "id": "HADOOP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "spark"}], "id": "SPARK" },
+  { "label": "SKILL", "pattern": [{"LOWER": "kafka"}], "id": "KAFKA" },
+  { "label": "SKILL", "pattern": [{"LOWER": "elasticsearch"}], "id": "ELASTICSEARCH" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "jenkins"}], "id": "JENKINS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "gitlab"}, {"LOWER": "ci"}], "id": "GITLAB_CI" },
+  { "label": "SKILL", "pattern": [{"LOWER": "terraform"}], "id": "TERRAFORM" },
+  { "label": "SKILL", "pattern": [{"LOWER": "ansible"}], "id": "ANSIBLE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "nginx"}], "id": "NGINX" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "graphql"}], "id": "GRAPHQL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "rest"}, {"LOWER": "api"}], "id": "REST_API" },
+  { "label": "SKILL", "pattern": [{"LOWER": "soap"}], "id": "SOAP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "microservices"}], "id": "MICROSERVICES" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "next.js"}], "id": "NEXTJS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "nuxt.js"}], "id": "NUXTJS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "react"}, {"LOWER": "native"}], "id": "REACT_NATIVE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "ionic"}], "id": "IONIC" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "erp"}], "id": "ERP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "sap"}], "id": "SAP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "oracle"}], "id": "ORACLE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "crm"}], "id": "CRM" },
+  { "label": "SKILL", "pattern": [{"LOWER": "salesforce"}], "id": "SALESFORCE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "hubspot"}], "id": "HUBSPOT" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "business"}, {"LOWER": "analysis"}], "id": "BUSINESS_ANALYSIS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "iş"}, {"LOWER": "analizi"}], "id": "BUSINESS_ANALYSIS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "system"}, {"LOWER": "analysis"}], "id": "SYSTEM_ANALYSIS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "sistem"}, {"LOWER": "analizi"}], "id": "SYSTEM_ANALYSIS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "requirements"}, {"LOWER": "analysis"}], "id": "REQ_ANALYSIS" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "project"}, {"LOWER": "management"}], "id": "PROJECT_MANAGEMENT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "proje"}, {"LOWER": "yönetimi"}], "id": "PROJECT_MANAGEMENT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "pmp"}], "id": "PMP" },
+  { "label": "SKILL", "pattern": [{"LOWER": "prince2"}], "id": "PRINCE2" },
+  { "label": "SKILL", "pattern": [{"LOWER": "jira"}], "id": "JIRA" },
+  { "label": "SKILL", "pattern": [{"LOWER": "trello"}], "id": "TRELLO" },
+  { "label": "SKILL", "pattern": [{"LOWER": "asana"}], "id": "ASANA" },
+  { "label": "SKILL", "pattern": [{"LOWER": "ms"}, {"LOWER": "project"}], "id": "MS_PROJECT" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "tableau"}], "id": "TABLEAU" },
+  { "label": "SKILL", "pattern": [{"LOWER": "power"}, {"LOWER": "bi"}], "id": "POWER_BI" },
+  { "label": "SKILL", "pattern": [{"LOWER": "qlikview"}], "id": "QLIKVIEW" },
+  { "label": "SKILL", "pattern": [{"LOWER": "excel"}], "id": "EXCEL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "vba"}], "id": "VBA" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "itil"}], "id": "ITIL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "cobit"}], "id": "COBIT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "bpmn"}], "id": "BPMN" },
+  { "label": "SKILL", "pattern": [{"LOWER": "uml"}], "id": "UML" },
+  { "label": "SKILL", "pattern": [{"LOWER": "visio"}], "id": "VISIO" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "seo"}], "id": "SEO" },
+  { "label": "SKILL", "pattern": [{"LOWER": "sem"}], "id": "SEM" },
+  { "label": "SKILL", "pattern": [{"LOWER": "google"}, {"LOWER": "analytics"}], "id": "GOOGLE_ANALYTICS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "e-commerce"}], "id": "ECOMMERCE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "e-ticaret"}], "id": "ECOMMERCE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "digital"}, {"LOWER": "marketing"}], "id": "DIGITAL_MARKETING" }
 ]

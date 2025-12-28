@@ -667,11 +667,19 @@ export class CandidatesComponent implements OnInit {
 
   showUploadDialog() {
     if (!this.selectedJob) {
-        this.messageService.add({severity:'warn', summary:'Uyarı', detail:'Lütfen önce bir pozisyon seçiniz.'});
-        return;
+      this.messageService.add({severity:'warn', summary:'Uyarı', detail:'Lütfen önce bir pozisyon seçiniz.'});
+      return;
     }
+    
+    // Form state'ini temizle
     this.uploadCandidateName = '';
     this.selectedFile = null;
+    
+    // FileUpload component'inin internal state'ini temizle
+    if (this.fileUploadRef) {
+      this.fileUploadRef.clear();
+    }
+    
     this.uploadDialogVisible = true;
   }
 
@@ -689,24 +697,34 @@ export class CandidatesComponent implements OnInit {
 
   uploadManualCV() {
     if (!this.selectedFile || !this.uploadCandidateName || !this.selectedJob) {
-        this.messageService.add({severity:'warn', summary:'Eksik Bilgi', detail:'Lütfen isim giriniz ve dosya seçiniz.'});
-        return;
+      this.messageService.add({severity:'warn', summary:'Eksik Bilgi', detail:'Lütfen isim giriniz ve dosya seçiniz.'});
+      return;
     }
-
+  
     this.isUploading = true;
-
+  
     this.candidateService.uploadCV(this.selectedFile, this.selectedJob.id, this.uploadCandidateName).subscribe({
-        next: (response) => {
-            this.messageService.add({severity:'success', summary:'Başarılı', detail:'Aday eklendi ve analiz edildi.'});
-            this.uploadDialogVisible = false;
-            this.isUploading = false;
-            this.loadCandidates();
-        },
-        error: (err) => {
-            console.error("[HATA] Yukleme hatasi:", err);
-            this.messageService.add({severity:'error', summary:'Hata', detail:'Yükleme sırasında hata oluştu.'});
-            this.isUploading = false;
+      next: (response) => {
+        this.messageService.add({severity:'success', summary:'Başarılı', detail:'Aday eklendi ve analiz edildi.'});
+        
+        // Form state'ini temizle
+        this.uploadCandidateName = '';
+        this.selectedFile = null;
+        
+        // FileUpload component'inin internal state'ini temizle
+        if (this.fileUploadRef) {
+          this.fileUploadRef.clear();
         }
+        
+        this.uploadDialogVisible = false;
+        this.isUploading = false;
+        this.loadCandidates();
+      },
+      error: (err) => {
+        console.error("[HATA] Yukleme hatasi:", err);
+        this.messageService.add({severity:'error', summary:'Hata', detail:'Yükleme sırasında hata oluştu.'});
+        this.isUploading = false;
+      }
     });
   }
 }
