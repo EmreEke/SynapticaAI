@@ -116,10 +116,11 @@
 }
 
 .logo-area {
-    height: 80px;
+    min-height: 80px;
+    height: auto;
     display: flex;
     align-items: center;
-    padding: 0 24px;
+    padding: 16px 16px;
     border-bottom: 1px solid var(--sidebar-border);
     position: relative;
 }
@@ -144,17 +145,13 @@
     background-color: var(--sidebar-hover);
 }
 
-.logo-icon {
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 20px;
+.logo-icon-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
     margin-right: 12px;
+    display: block;
+    flex-shrink: 0;
 }
 
 .logo-text { font-size: 1.25rem; font-weight: 700; }

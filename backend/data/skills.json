@@ -5,6 +5,10 @@
   { "label": "SKILL", "pattern": [{"LOWER": "java"}], "id": "JAVA" },
   { "label": "SKILL", "pattern": [{"LOWER": "c++"}], "id": "C++" },
   { "label": "SKILL", "pattern": [{"LOWER": "c#"}], "id": "C#" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "flutter"}], "id": "FLUTTER" },
+  { "label": "SKILL", "pattern": [{"LOWER": "react"}], "id": "REACT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "kotlin"}], "id": "KOTLIN" },
   
   { "label": "SKILL", "pattern": [{"LOWER": "javascript"}], "id": "JAVASCRIPT" },
   { "label": "SKILL", "pattern": [{"LOWER": "js"}], "id": "JAVASCRIPT" },
