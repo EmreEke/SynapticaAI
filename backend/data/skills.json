@@ -1,6 +1,7 @@
 [
   { "label": "SKILL", "pattern": [{"LOWER": "python"}], "id": "PYTHON" },
   { "label": "SKILL", "pattern": [{"LOWER": "pyton"}], "id": "PYTHON" },
+  { "label": "SKILL", "pattern": [{"LOWER": "java"}, {"LOWER": "programming"}, {"LOWER": "language"}], "id": "JAVA" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "java"}], "id": "JAVA" },
   { "label": "SKILL", "pattern": [{"LOWER": "c++"}], "id": "C++" },
@@ -9,13 +10,14 @@
   { "label": "SKILL", "pattern": [{"LOWER": "flutter"}], "id": "FLUTTER" },
   { "label": "SKILL", "pattern": [{"LOWER": "react"}], "id": "REACT" },
   { "label": "SKILL", "pattern": [{"LOWER": "kotlin"}], "id": "KOTLIN" },
+  { "label": "SKILL", "pattern": [{"LOWER": "android"}], "id": "ANDROID" },
+  { "label": "SKILL", "pattern": [{"LOWER": "ios"}], "id": "IOS" },
   
   { "label": "SKILL", "pattern": [{"LOWER": "javascript"}], "id": "JAVASCRIPT" },
   { "label": "SKILL", "pattern": [{"LOWER": "js"}], "id": "JAVASCRIPT" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "typescript"}], "id": "TYPESCRIPT" },
   { "label": "SKILL", "pattern": [{"LOWER": "angular"}], "id": "ANGULAR" },
-  { "label": "SKILL", "pattern": [{"LOWER": "react"}], "id": "REACT" },
   { "label": "SKILL", "pattern": [{"LOWER": "vue"}], "id": "VUE" },
   { "label": "SKILL", "pattern": [{"LOWER": "node.js"}], "id": "NODEJS" },
   
@@ -52,10 +54,14 @@
   { "label": "SKILL", "pattern": [{"LOWER": "agile"}], "id": "AGILE" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "html"}], "id": "HTML" },
+  { "label": "SKILL", "pattern": [{"LOWER": "html5"}], "id": "HTML" },
   { "label": "SKILL", "pattern": [{"LOWER": "css"}], "id": "CSS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "css3"}], "id": "CSS" },
   { "label": "SKILL", "pattern": [{"LOWER": "sass"}], "id": "SASS" },
   { "label": "SKILL", "pattern": [{"LOWER": "bootstrap"}], "id": "BOOTSTRAP" },
   { "label": "SKILL", "pattern": [{"LOWER": "tailwind"}], "id": "TAILWIND" },
+  { "label": "SKILL", "pattern": [{"LOWER": "php"}, {"IS_PUNCT": true, "OP": "?"}, {"LOWER": "laravel"}], "id": "LARAVEL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "php"}, {"IS_PUNCT": true, "OP": "?"}, {"LOWER": "symfony"}], "id": "SYMFONY" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "php"}], "id": "PHP" },
   { "label": "SKILL", "pattern": [{"LOWER": "laravel"}], "id": "LARAVEL" },
@@ -67,11 +73,19 @@
   { "label": "SKILL", "pattern": [{"LOWER": "rails"}], "id": "RAILS" },
   { "label": "SKILL", "pattern": [{"LOWER": "swift"}], "id": "SWIFT" },
   { "label": "SKILL", "pattern": [{"LOWER": "scala"}], "id": "SCALA" },
+  { "label": "SKILL", "pattern": [{"LOWER": "perl"}], "id": "PERL" },
+  { "label": "SKILL", "pattern": [{"LOWER": "rust"}], "id": "RUST" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "spring"}], "id": "SPRING" },
   { "label": "SKILL", "pattern": [{"LOWER": "spring"}, {"LOWER": "boot"}], "id": "SPRINGBOOT" },
   { "label": "SKILL", "pattern": [{"LOWER": ".net"}], "id": "DOTNET" },
   { "label": "SKILL", "pattern": [{"LOWER": "entity"}, {"LOWER": "framework"}], "id": "ENTITY_FRAMEWORK" },
+  { "label": "SKILL", "pattern": [{"LOWER": "asp.net"}], "id": "ASP_DOTNET" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "machine"}, {"LOWER": "learning"}], "id": "MACHINE_LEARNING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "deep"}, {"LOWER": "learning"}], "id": "DEEP_LEARNING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "data"}, {"LOWER": "science"}], "id": "DATA_SCIENCE" },
+  { "label": "SKILL", "pattern": [{"LOWER": "artificial"}, {"LOWER": "intelligence"}], "id": "AI" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "tensorflow"}], "id": "TENSORFLOW" },
   { "label": "SKILL", "pattern": [{"LOWER": "pytorch"}], "id": "PYTORCH" },
@@ -80,22 +94,30 @@
   { "label": "SKILL", "pattern": [{"LOWER": "numpy"}], "id": "NUMPY" },
   { "label": "SKILL", "pattern": [{"LOWER": "scikit-learn"}], "id": "SCIKIT_LEARN" },
   { "label": "SKILL", "pattern": [{"LOWER": "opencv"}], "id": "OPENCV" },
+  { "label": "SKILL", "pattern": [{"LOWER": "nltk"}], "id": "NLTK" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "hadoop"}], "id": "HADOOP" },
   { "label": "SKILL", "pattern": [{"LOWER": "spark"}], "id": "SPARK" },
   { "label": "SKILL", "pattern": [{"LOWER": "kafka"}], "id": "KAFKA" },
   { "label": "SKILL", "pattern": [{"LOWER": "elasticsearch"}], "id": "ELASTICSEARCH" },
+  { "label": "SKILL", "pattern": [{"LOWER": "tableau"}], "id": "TABLEAU" },
+
+  { "label": "SKILL", "pattern": [{"LOWER": "ci/cd"}], "id": "CI_CD" },
+  { "label": "SKILL", "pattern": [{"LOWER": "continuous"}, {"LOWER": "integration"}], "id": "CI" },
+  { "label": "SKILL", "pattern": [{"LOWER": "continuous"}, {"LOWER": "deployment"}], "id": "CD" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "jenkins"}], "id": "JENKINS" },
   { "label": "SKILL", "pattern": [{"LOWER": "gitlab"}, {"LOWER": "ci"}], "id": "GITLAB_CI" },
   { "label": "SKILL", "pattern": [{"LOWER": "terraform"}], "id": "TERRAFORM" },
   { "label": "SKILL", "pattern": [{"LOWER": "ansible"}], "id": "ANSIBLE" },
   { "label": "SKILL", "pattern": [{"LOWER": "nginx"}], "id": "NGINX" },
+  { "label": "SKILL", "pattern": [{"LOWER": "apache"}], "id": "APACHE" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "graphql"}], "id": "GRAPHQL" },
   { "label": "SKILL", "pattern": [{"LOWER": "rest"}, {"LOWER": "api"}], "id": "REST_API" },
   { "label": "SKILL", "pattern": [{"LOWER": "soap"}], "id": "SOAP" },
   { "label": "SKILL", "pattern": [{"LOWER": "microservices"}], "id": "MICROSERVICES" },
+  { "label": "SKILL", "pattern": [{"LOWER": "serverless"}], "id": "SERVERLESS" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "next.js"}], "id": "NEXTJS" },
   { "label": "SKILL", "pattern": [{"LOWER": "nuxt.js"}], "id": "NUXTJS" },
@@ -108,12 +130,14 @@
   { "label": "SKILL", "pattern": [{"LOWER": "crm"}], "id": "CRM" },
   { "label": "SKILL", "pattern": [{"LOWER": "salesforce"}], "id": "SALESFORCE" },
   { "label": "SKILL", "pattern": [{"LOWER": "hubspot"}], "id": "HUBSPOT" },
+  { "label": "SKILL", "pattern": [{"LOWER": "microsoft"}, {"LOWER": "dynamics"}], "id": "MS_DYNAMICS" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "business"}, {"LOWER": "analysis"}], "id": "BUSINESS_ANALYSIS" },
   { "label": "SKILL", "pattern": [{"LOWER": "iş"}, {"LOWER": "analizi"}], "id": "BUSINESS_ANALYSIS" },
   { "label": "SKILL", "pattern": [{"LOWER": "system"}, {"LOWER": "analysis"}], "id": "SYSTEM_ANALYSIS" },
   { "label": "SKILL", "pattern": [{"LOWER": "sistem"}, {"LOWER": "analizi"}], "id": "SYSTEM_ANALYSIS" },
   { "label": "SKILL", "pattern": [{"LOWER": "requirements"}, {"LOWER": "analysis"}], "id": "REQ_ANALYSIS" },
+  { "label": "SKILL", "pattern": [{"LOWER": "gereksinim"}, {"LOWER": "analizi"}], "id": "REQ_ANALYSIS" },
 
   { "label": "SKILL", "pattern": [{"LOWER": "project"}, {"LOWER": "management"}], "id": "PROJECT_MANAGEMENT" },
   { "label": "SKILL", "pattern": [{"LOWER": "proje"}, {"LOWER": "yönetimi"}], "id": "PROJECT_MANAGEMENT" },
@@ -141,5 +165,10 @@
   { "label": "SKILL", "pattern": [{"LOWER": "google"}, {"LOWER": "analytics"}], "id": "GOOGLE_ANALYTICS" },
   { "label": "SKILL", "pattern": [{"LOWER": "e-commerce"}], "id": "ECOMMERCE" },
   { "label": "SKILL", "pattern": [{"LOWER": "e-ticaret"}], "id": "ECOMMERCE" },
-  { "label": "SKILL", "pattern": [{"LOWER": "digital"}, {"LOWER": "marketing"}], "id": "DIGITAL_MARKETING" }
+  { "label": "SKILL", "pattern": [{"LOWER": "digital"}, {"LOWER": "marketing"}], "id": "DIGITAL_MARKETING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "dijital"}, {"LOWER": "pazarlama"}], "id": "DIGITAL_MARKETING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "content"}, {"LOWER": "marketing"}], "id": "CONTENT_MARKETING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "içerik"}, {"LOWER": "pazarlama"}], "id": "CONTENT_MARKETING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "social"}, {"LOWER": "media"}, {"LOWER": "marketing"}], "id": "SOCIAL_MEDIA_MARKETING" },
+  { "label": "SKILL", "pattern": [{"LOWER": "sosyal"}, {"LOWER": "medya"}, {"LOWER": "pazarlama"}], "id": "SOCIAL_MEDIA_MARKETING" }
 ]
